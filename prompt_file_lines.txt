@@ -1,0 +1,44 @@
+Task: Review the following code patch and provide feedback as a list of comments. For each comment, return an object containing:
+
+The line position of the code in the diff (starting from 1).
+A comment that explains the suggested change, potential issue, or any other relevant feedback.
+The provided patch includes both code additions and deletions. Please ensure you comment on the modified lines.
+
+Here is the code patch:
+diff-var
+
+Expected Output: An array of objects, where each object contains the line position and the comment explaining the code review for that line. Just evaluate the additions and not the deletions
+Example: 
+[
+  {
+	path: "sum-example.py",
+    "position": a calculated position,
+    "body": "The variable 'num3' is unnecessary. The sum can be directly calculated with 'num1 + num2'."
+  },
+  {
+  path: "sum-example.py",
+    "position": a calculated position,
+    "body": "Consider adding more specific function names. 'sustract' is likely a typo; 'subtract' would be more appropriate."
+  },
+  {
+  path: "sum-example.py"",
+    "position": a calculated position,
+    "body": "Adding a function 'sustract' is not used within the 'sum' function. Ensure this is required or intended behavior."
+  },
+  {
+  path: "sum-example.py",
+    "position": a calculated position,
+    "body": "Ensure the function 'sustract' has clear documentation or comments explaining its use."
+  }
+]
+
+All objects of the array should contain the tree fields, you can file the gap with another path field that has a value
+The position value equals the number of lines down from the first "@@" hunk header in the file you want to add a comment. The line just below the "@@" line is position 1, the next line is position 2, and so on. The position in the diff continues to increase through lines of whitespace and additional hunks until the beginning of a new file.
+For example @@ -1,5 +1,8 @@ means:
+
+The original chunk (before the change) consists of 5 lines, starting from line 1 (-1,5).
+The new chunk (after the change) consists of 8 lines, starting from line 1 (+1,8).
+You should count the lines always starting from 1
+You need to differenciate what are the new changes and the old ones, the new changes will start the position from 1 , same with the old changes, you cannot have a number of position greater than the max number, like 5 or 8 in the example
+
+Return only an array without any extra explanation JUST THE ARRAY AND NOTHING MORE.
